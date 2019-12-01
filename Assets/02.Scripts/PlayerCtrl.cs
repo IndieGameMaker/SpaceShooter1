@@ -33,9 +33,15 @@ public class PlayerCtrl : MonoBehaviour
         Debug.Log("h=" + h); 
         Debug.Log("v=" + v);
 
+        //벡터의 덧셈연산
+        Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
+        moveDir = moveDir.normalized; //벡터의 정규화: 크기를 1로 변경한 벡터를 산출
+
+        transform.Translate(moveDir * 0.1f);
+
         //Translate(이동방향 * 속력 * 변위)
-        transform.Translate(Vector3.forward * 0.1f * v);    //전진/후진
-        transform.Translate(Vector3.right * 0.1f * h);      //좌우이동
+        //transform.Translate(Vector3.forward * 0.1f * v);    //전진/후진
+        //transform.Translate(Vector3.right * 0.1f * h);      //좌우이동
         //단위벡터, 정규화벡터
         /*
             Vector3.forward = Vector3(0, 0, 1)
