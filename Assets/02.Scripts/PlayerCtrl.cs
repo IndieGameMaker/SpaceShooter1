@@ -2,14 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Class : 변수와 함수의 집합
+public class PlayerAnim
+{
+    public AnimationClip idle;
+    public AnimationClip runForward;
+    public AnimationClip runBackward;
+    public AnimationClip runLeft;
+    public AnimationClip runRight;
+}
+
 public class PlayerCtrl : MonoBehaviour
 {
     public float moveSpeed = 8.0f;
+    private Animation anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animation>();
+        anim.Play("Idle");
     }
 
     // 화면을 랜더링하는 주기마다 호출됨.
