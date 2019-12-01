@@ -28,7 +28,8 @@ public class PlayerCtrl : MonoBehaviour
     // 항상 최적화에 신경을 써야 되는 함수
     void Update()
     {
-        
+        float h = Input.GetAxis("Horizontal");
+        Debug.Log("h=" + h); 
     }
 
     // 물리엔진이 시뮬레이션 연산을 하는 주기 (0.03초)
