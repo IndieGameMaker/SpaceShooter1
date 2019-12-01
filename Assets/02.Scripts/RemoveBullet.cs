@@ -14,7 +14,8 @@ public class RemoveBullet : MonoBehaviour
             ContactPoint[] points = coll.contacts;
             Quaternion rot = Quaternion.LookRotation(points[0].normal);
 
-            Instantiate(sparkEffect, points[0].point, rot);
+            GameObject obj = Instantiate(sparkEffect, points[0].point, rot);
+            Destroy(obj , 0.4f);
 
 
             Destroy(coll.gameObject);
