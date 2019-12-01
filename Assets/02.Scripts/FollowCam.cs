@@ -16,8 +16,10 @@ public class FollowCam : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        Vector3 pos = (-targetTr.forward * distance) + (Vector3.up * height);
+        //Vector3.Lerp(현재 위치, 이동할 위치, 민감도)
+        transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * damping);
     }
 }
