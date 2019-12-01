@@ -20,14 +20,16 @@ public class PlayerCtrl : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        Debug.Log("h=" + h); 
-        Debug.Log("v=" + v);
+        float r = Input.GetAxis("Mouse X");
 
         //벡터의 덧셈연산
         Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
         moveDir = moveDir.normalized; //벡터의 정규화: 크기를 1로 변경한 벡터를 산출
-
+        //이동처리
         transform.Translate(moveDir * Time.deltaTime * moveSpeed);
+        //회전처리
+        transform.Rotate(Vector3.up * Time.deltaTime * 80.0f * r);
+
 
         //Translate(이동방향 * 속력 * 변위)
         //transform.Translate(Vector3.forward * 0.1f * v);    //전진/후진
