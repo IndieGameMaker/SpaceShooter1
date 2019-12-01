@@ -56,7 +56,7 @@ public class PlayerCtrl : MonoBehaviour
             anim.CrossFade(playerAnim.runForward.name , 0.3f);
         }
         else if (v <= -0.1f) //후진
-        {
+        {
             anim.CrossFade(playerAnim.runBackward.name, 0.3f);
         }
         else if (h >= 0.1f) //오른쪽으로 이동
@@ -72,6 +72,4 @@ public class PlayerCtrl : MonoBehaviour
             anim.CrossFade(playerAnim.idle.name, 0.3f);
         }
     }
-    
-
 }
