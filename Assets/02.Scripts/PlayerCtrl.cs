@@ -11,6 +11,7 @@ public class PlayerAnim
     public AnimationClip runBackward;
     public AnimationClip runLeft;
     public AnimationClip runRight;
+    //public AnimationClip[] dies;
 }
 
 public class PlayerCtrl : MonoBehaviour
@@ -18,6 +19,9 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerAnim playerAnim;
     public float moveSpeed = 8.0f;
     private Animation anim;
+
+
+    
 
     // Start is called before the first frame update
     void Start()
