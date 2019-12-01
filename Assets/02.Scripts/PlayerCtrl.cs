@@ -29,7 +29,12 @@ public class PlayerCtrl : MonoBehaviour
     void Update()
     {
         float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
         Debug.Log("h=" + h); 
+        Debug.Log("v=" + v);
+
+        transform.position += new Vector3(0, 0, 0.1f) * v;
+        //transform.position = transform.position + new Vector3(0, 0, 0.1f);
     }
 
     // 물리엔진이 시뮬레이션 연산을 하는 주기 (0.03초)
