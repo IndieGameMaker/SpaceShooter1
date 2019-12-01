@@ -20,14 +20,11 @@ public class PlayerCtrl : MonoBehaviour
     public float moveSpeed = 8.0f;
     private Animation anim;
 
-
-    
-
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animation>();
-        anim.Play("Idle");
+        anim.Play(playerAnim.idle.name); //"Idle"
     }
 
     // 화면을 랜더링하는 주기마다 호출됨.
@@ -48,40 +45,33 @@ public class PlayerCtrl : MonoBehaviour
         //회전처리
         transform.Rotate(Vector3.up * Time.deltaTime * 80.0f * r);
 
-
-        //Translate(이동방향 * 속력 * 변위)
-        //transform.Translate(Vector3.forward * 0.1f * v);    //전진/후진
-        //transform.Translate(Vector3.right * 0.1f * h);      //좌우이동
-        //단위벡터, 정규화벡터
-        /*
-            Vector3.forward = Vector3(0, 0, 1)
-            Vector3.up      = Vector3(0, 1, 0)
-            Vector3.right   = Vector3(1, 0, 0)
-
-            Vector3.zero    = Vector3(0, 0, 0)
-            Vector3.one     = Vector3(1, 1, 1)
-        */
-
-
-
-
-
-        //transform.position += new Vector3(0, 0, 0.1f) * v;
-        //transform.position = transform.position + new Vector3(0, 0, 0.1f);
+        SetAnimation(v, h);
     }
 
-    // 물리엔진이 시뮬레이션 연산을 하는 주기 (0.03초)
-    // 정확히 fixedTimeStemp 기준으로 호출됨. (정확한 시간간격으로 호출)
-    void FixedUpdate()
+    //애니메이션 처리를 위한 함수
+    void SetAnimation(float v, float h)
     {
-
+        if (v >= 0.1f) //전진
+        {
+            anim.CrossFade(playerAnim.runForward.name , 0.3f);
+        }
+        else if (v <= -0.1f) //후진
+        {
+            anim.CrossFade(playerAnim.runBackward.name, 0.3f);
+        }
+        else if (h >= 0.1f) //오른쪽으로 이동
+        {
+            anim.CrossFade(playerAnim.runRight.name, 0.3f);
+        }
+        else if (h <= -0.1f) //왼쪽으로 이동
+        {
+            anim.CrossFade(playerAnim.runLeft.name, 0.3f);
+        }
+        else //아이들링
+        {
+            anim.CrossFade(playerAnim.idle.name, 0.3f);
+        }
     }
-
-    void LateUpdate()
-    {
-
-    }
-
     
 
 }
