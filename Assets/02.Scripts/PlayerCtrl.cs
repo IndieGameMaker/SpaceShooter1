@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    //다른 모든 스크립트의 Start 함수가 호출되기 전에 제일 먼저 호출된다.
-    void Awake()
-    {
-
-    }
-
-    //한번 호출됨. 매번 스크립트가 활성화 될때마다 호출되는 함수.
-    void OnEnable()
-    {
-
-    }
+    public float moveSpeed = 8.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +27,7 @@ public class PlayerCtrl : MonoBehaviour
         Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
         moveDir = moveDir.normalized; //벡터의 정규화: 크기를 1로 변경한 벡터를 산출
 
-        transform.Translate(moveDir * 0.1f);
+        transform.Translate(moveDir * Time.deltaTime * moveSpeed);
 
         //Translate(이동방향 * 속력 * 변위)
         //transform.Translate(Vector3.forward * 0.1f * v);    //전진/후진
