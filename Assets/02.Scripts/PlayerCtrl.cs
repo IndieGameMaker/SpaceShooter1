@@ -33,7 +33,24 @@ public class PlayerCtrl : MonoBehaviour
         Debug.Log("h=" + h); 
         Debug.Log("v=" + v);
 
-        transform.position += new Vector3(0, 0, 0.1f) * v;
+        //Translate(이동방향 * 속력 * 변위)
+        transform.Translate(Vector3.forward * 0.1f * v);    //전진/후진
+        transform.Translate(Vector3.right * 0.1f * h);      //좌우이동
+        //단위벡터, 정규화벡터
+        /*
+            Vector3.forward = Vector3(0, 0, 1)
+            Vector3.up      = Vector3(0, 1, 0)
+            Vector3.right   = Vector3(1, 0, 0)
+
+            Vector3.zero    = Vector3(0, 0, 0)
+            Vector3.one     = Vector3(1, 1, 1)
+        */
+
+
+
+
+
+        //transform.position += new Vector3(0, 0, 0.1f) * v;
         //transform.position = transform.position + new Vector3(0, 0, 0.1f);
     }
 
