@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Class : 변수와 함수의 집합
+[System.Serializable]
 public class PlayerAnim
 {
     public AnimationClip idle;
@@ -14,6 +15,7 @@ public class PlayerAnim
 
 public class PlayerCtrl : MonoBehaviour
 {
+    public PlayerAnim playerAnim;
     public float moveSpeed = 8.0f;
     private Animation anim;
 
