@@ -52,4 +52,12 @@ public class MonsterCtrl : MonoBehaviour
             agent.isStopped = true; //정지
         }
     }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.collider.CompareTag("BULLET"))
+        {
+            anim.SetTrigger("Hit");
+        }
+    }
 }
