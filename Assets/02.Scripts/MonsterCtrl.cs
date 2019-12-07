@@ -11,6 +11,9 @@ public class MonsterCtrl : MonoBehaviour
     private Transform playerTr;
 
     private Animator anim;
+    private int hashHit = Animator.StringToHash("Hit");
+
+    private float hp = 100.0f;
 
     void Start()
     {
@@ -57,7 +60,23 @@ public class MonsterCtrl : MonoBehaviour
     {
         if (coll.collider.CompareTag("BULLET"))
         {
-            anim.SetTrigger("Hit");
+            Destroy(coll.gameObject);
+            //anim.SetTrigger("Hit"); //Hashtable 검색하는 시간이 소요됨.(X)
+            anim.SetTrigger(hashHit); //미리 추출한 해시값을 전달.(O)
+            //HP 차감
+            hp -= 20.0f; //hp = hp - 20.0f;
+            //몬스터 사망여부 판단
+            if (hp <= 0.0f)
+            {
+                MonsterDie();
+            }
         }
+    }
+
+    private int hashDie = Animator.StringToHash("Die");
+
+    void MonsterDie()
+    {
+        anim.SetTrigger(hashDie);
     }
 }
