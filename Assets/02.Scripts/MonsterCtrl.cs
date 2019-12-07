@@ -30,19 +30,21 @@ public class MonsterCtrl : MonoBehaviour
     void Update()
     {
         //Vector3.Distance(A, B)   A와 B간의 거리를 반환하는 함수
+
+        //공격로직
+        if (Vector3.Distance(transform.position, playerTr.position) <= 2.0f)
+        {
+            anim.SetBool("isAttack", true);
+            agent.isStopped = true; //내비메시에이전트를 정지
+        }
         //추적로직
-        if (Vector3.Distance(transform.position, playerTr.position) <= 5.0f)
+        else if (Vector3.Distance(transform.position, playerTr.position) <= 5.0f)
         {
             agent.SetDestination(playerTr.position);
             agent.isStopped = false; //추적시작
 
             anim.SetBool("isTrace", true);
-        }
-        //공격로직
-        else if (Vector3.Distance(transform.position, playerTr.position) <= 2.0f)
-        {
-            anim.SetBool("isAttack", true);
-            agent.isStopped = true; //내비메시에이전트를 정지
+            anim.SetBool("isAttack", false);
         }
         else
         {
