@@ -14,6 +14,8 @@ public class MonsterCtrl : MonoBehaviour
     private int hashHit = Animator.StringToHash("Hit");
 
     private float hp = 100.0f;
+    //몬스터의 사망여부
+    private bool isDie = false;
 
     void Start()
     {
@@ -32,6 +34,8 @@ public class MonsterCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDie == true) return;
+
         //Vector3.Distance(A, B)   A와 B간의 거리를 반환하는 함수
 
         //공격로직
@@ -41,7 +45,7 @@ public class MonsterCtrl : MonoBehaviour
             agent.isStopped = true; //내비메시에이전트를 정지
         }
         //추적로직
-        else if (Vector3.Distance(transform.position, playerTr.position) <= 5.0f)
+        else if (Vector3.Distance(transform.position, playerTr.position) <= 20.0f)
         {
             agent.SetDestination(playerTr.position);
             agent.isStopped = false; //추적시작
@@ -77,6 +81,11 @@ public class MonsterCtrl : MonoBehaviour
 
     void MonsterDie()
     {
+        isDie = true;
+        //Navigation 정지
+        agent.isStopped = true;
+        //Capsule Collider 비활성
+        GetComponent<CapsuleCollider>().enabled = false;
         anim.SetTrigger(hashDie);
     }
 }
